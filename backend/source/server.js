@@ -7,11 +7,12 @@ dotenv.config({ path: path.join(__dirname, "..", ".env") });
 dotenv.config({ path: path.join(__dirname, ".env") });
 
 const { app, db } = require("../other/app.cjs");
+// 1. Convert the Render environment variable to an integer safely
 const PORT = parseInt(process.env.PORT, 10) || 3000;
 
-
-if (!Number.isInteger(port) || port < 1 || port > 65535) {
-  throw new Error("PORT must be an integer between 1 and 65535.");
+// 2. Fix line 13 by changing lowercase 'port' to uppercase 'PORT'
+if (!Number.isInteger(PORT) || PORT < 1 || PORT > 65535) {
+    throw new Error("PORT must be an integer between 1 and 65535.");
 }
 
 const server = app.listen(port, "127.0.0.1", () => {
