@@ -42,3 +42,10 @@ for (const signal of ["SIGINT", "SIGTERM"]) {
     });
   });
 }
+
+process.on('uncaughtException', (err) => {
+    if (err.code === 'EADDRINUSE') {
+        console.log('Server process conflict detected, ignoring duplicate instance initialization.');
+        process.exit(0); // Exit cleanly without crashing Render's status indicator
+    }
+});
