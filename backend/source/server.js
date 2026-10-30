@@ -6,6 +6,13 @@ dotenv.config({ path: path.join(__dirname, "..", "..", ".env") });
 dotenv.config({ path: path.join(__dirname, "..", ".env") });
 dotenv.config({ path: path.join(__dirname, ".env") });
 
+process.on('uncaughtException', (err) => {
+    if (err.code === 'EADDRINUSE') {
+        console.log('Duplicate server process detected. Keeping active instance alive.');
+        process.exit(0); 
+    }
+});
+
 const { app, db } = require("../other/app.cjs");
 const PORT = parseInt(process.env.PORT, 10) || 10000;
 const port = PORT; 
