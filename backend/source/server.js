@@ -7,7 +7,8 @@ dotenv.config({ path: path.join(__dirname, "..", ".env") });
 dotenv.config({ path: path.join(__dirname, ".env") });
 
 const { app, db } = require("../other/app.cjs");
-const port = Number.parseInt(process.env.PORT || "5000", 10);
+const PORT = parseInt(process.env.PORT, 10) || 3000;
+
 
 if (!Number.isInteger(port) || port < 1 || port > 65535) {
   throw new Error("PORT must be an integer between 1 and 65535.");
