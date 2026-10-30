@@ -7,13 +7,15 @@ dotenv.config({ path: path.join(__dirname, "..", ".env") });
 dotenv.config({ path: path.join(__dirname, ".env") });
 
 const { app, db } = require("../other/app.cjs");
-// 1. Parse the environment port
+// Define BOTH uppercase and lowercase variables to satisfy all lines of code
 const PORT = parseInt(process.env.PORT, 10) || 3000;
+const port = PORT; 
 
-// 2. Validate using uppercase PORT
+// Validate the port
 if (!Number.isInteger(PORT) || PORT < 1 || PORT > 65535) {
     throw new Error("PORT must be an integer between 1 and 65535.");
 }
+
 
 // 3. Make sure your app.listen uses uppercase PORT as well (Line 18)
 app.listen(PORT, '0.0.0.0', () => {
