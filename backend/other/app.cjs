@@ -85,6 +85,13 @@ function sqliteConflict(error) {
   }
 }
 
+app.get("/", (req, res) => {
+    res.json({
+        success: true,
+        message: "Snabbler AI Backend is Running!"
+    });
+});
+
 app.get("/api/health", (_req, res) => {
   res.json({ success: true, message: "Snabbler AI backend is running", database: "connected" });
 });
