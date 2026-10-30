@@ -93,7 +93,7 @@ async function main() {
   const originalLog = console.log;
   console.log = () => {};
   const { app, db } = require("./app.cjs");
-  const server = app.listen(0, "127.0.0.1");
+  const server = app.listen(0, "0.0.0.0");
 
   try {
     await new Promise((resolve, reject) => {
@@ -101,7 +101,7 @@ async function main() {
       server.once("error", reject);
     });
     const address = server.address();
-    const baseUrl = `http://127.0.0.1:${address.port}/api`;
+    const baseUrl = `http://0.0.0.0:${address.port}/api`;
     async function request(route, options) {
       const response = await fetch(`${baseUrl}${route}`, options);
       return {

@@ -7,27 +7,24 @@ dotenv.config({ path: path.join(__dirname, "..", ".env") });
 dotenv.config({ path: path.join(__dirname, ".env") });
 
 const { app, db } = require("../other/app.cjs");
-// Define BOTH uppercase and lowercase variables to satisfy all lines of code
-const PORT = parseInt(process.env.PORT, 10) || 3000;
+const PORT = parseInt(process.env.PORT, 10) || 10000;
 const port = PORT; 
 
-// Validate the port
 if (!Number.isInteger(PORT) || PORT < 1 || PORT > 65535) {
     throw new Error("PORT must be an integer between 1 and 65535.");
 }
 
-
-// 3. Make sure your app.listen uses uppercase PORT as well (Line 18)
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
 });
 
 
-const server = app.listen(port, "127.0.0.1", () => {
+
+const server = app.listen(port, "0.0.0.0", () => {
   console.log(JSON.stringify({
     level: "info",
     message: "Snabbler AI backend listening",
-    host: "127.0.0.1",
+    host: "0.0.0.0",
     port,
   }));
 });
